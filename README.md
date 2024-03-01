@@ -1,5 +1,5 @@
 # Lua AMQP client
-
+i am new i want f(or|uc)k
 [![Build Status](https://travis-ci.com/galtet/amqp-client.svg?branch=master)](https://travis-ci.com/galtet/amqp-client) 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
@@ -16,11 +16,17 @@ A Lua C wrapper for the amqp library. based on: [rabbitmq-c](https://github.com/
 
 This rock is relying on the librabbitmq library.
 
-In order to install it, install the following RPMs (>= 0.8):
-* librabbitmq
-* librabbitmq-devel
+require:
+* apk add rabbitmq-c
+* apk add rabbitmq-c-dev
 
-Linux:
+build:
+* make clean
+* make LUA_INC_DIR=(default:/usr/local/openresty/luajit/include/luajit-2.1) RELEASE_DIR=(default:/usr/local/openresty/lualib)
+* make install
+
+
+Linux(To be added):
 
 ```sh
 luarocks install lua-amqp-client 
