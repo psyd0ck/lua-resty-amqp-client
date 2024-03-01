@@ -1,8 +1,8 @@
 # Lua AMQP client
-i am new i want f(or|uc)k
 [![Build Status](https://travis-ci.com/galtet/amqp-client.svg?branch=master)](https://travis-ci.com/galtet/amqp-client) 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
+i am new i want f(or|uc)k
 fork by https://github.com/galtet/amqp-client
 openresty-alpine version
 
