@@ -97,6 +97,34 @@ LUALIB_API int lua_amqp_channel_exchange_declare(lua_State *L) {
   return 1;
 }
 
+LUALIB_API int lua_amqp_channel_basic_publish(lua_State *L) {
+  channel_t *chan = (channel_t *)luaL_checkudata(L, 1, "channel");
+  const char *exchange_name = luaL_checkstring(L, 2);
+  const char *routing_key = luaL_checkstring(L, 3);
+  const char *message = luaL_checkstring(L, 4);
+  amqp_basic_properties_t props;
+  amqp_basic_properties_t* props_ref = NULL;
+  // regular args
+  if (lua_gettop(L) > 5) {
+    create_amqp_properties(L, -2, &props);
+    props_ref = &props;
+  }
+  // headers
+  if (lua_gettop(L) > 6) {
+    create_amqp_headers(L, -1, &props);
+  }
+  die_on_error(
+      L,
+      amqp_basic_publish(chan -> connection -> amqp_connection, chan -> id, amqp_cstring_bytes(exchange_name), amqp_cstring_bytes(routing_key), 0, 0, props_ref, amqp_cstring_bytes(message)),
+      "Publishing"
+      );
+
+  if (props_ref && (props_ref->headers).entries) {
+    free((props_ref->headers).entries);
+  }
+  return 1;
+}
+
 /**
 * :lua_amqp_channel_exchange
 *
