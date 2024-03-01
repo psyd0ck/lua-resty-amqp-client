@@ -1,0 +1,6 @@
+*.so
+bin/
+obj/
+src/*.o
+.git
+.fleet
